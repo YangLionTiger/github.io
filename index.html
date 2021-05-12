@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户点击展示颜色信息</title>
+  <style>
+    input {
+      display: none;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #eee;
+    }
+
+    div {
+      box-sizing: border-box;
+    }
+
+    label {
+      /* display: block; */
+      width: 120px;
+      height: 50px;
+    }
+
+    label {
+      display: block;
+      width: 100px;
+      height: 40px;
+      border: solid #bbb 2px;
+      text-align: center;
+      line-height: 40px;
+      margin: 50px auto;
+      box-shadow: 0 0 7px rgba(66, 66, 66, .6);
+      border-radius: 7px;
+      color: #777;
+      user-select: none;
+    }
+
+    label:hover {
+      background-color: #666;
+      color: #eee;
+      transition: .5s;
+      cursor: pointer;
+      border: solid white 2px;
+      animation-timing-function: ease-in-out;
+    }
+
+    label:active {
+      color: #eee;
+      background-color: #666;
+      transition: .5s;
+      animation-timing-function: ease-in-out;
+    }
+
+    .fl {
+      float: left;
+    }
+
+    .fr {
+      float: right;
+    }
+
+    #main {
+      margin-top: 50px;
+      width: 100%;
+      height: 500px;
+    }
+
+    .left {
+      border-right: solid #bbb;
+      overflow: auto;
+    }
+
+    .left,
+    .right {
+      width: 50%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .wrap {
+      width: 100%;
+      height: 100%;
+
+    }
+
+    .color_info {
+      width: 50%;
+      height: 50%;
+      /* border: solid 2px chocolate; */
+      clear: both;
+      margin: 50px auto;
+    }
+
+    .info_text {
+      width: 45%;
+      height: 30px;
+      border: solid 2px #bbb;
+      margin-bottom: 20px;
+    }
+
+    .info_img {
+      width: 45%;
+      height: 30px;
+      margin-bottom: 20px;
+    }
+
+    .info_title {
+      margin-left: -55%;
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      margin-bottom: 20px;
+    }
+
+    .info_title:last-child {
+      margin-left: -67%;
+    }
+
+    .show_box {
+      width: 100px;
+      height: 100px;
+      margin-left: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="file" name="" id="input_file">
+  <label for="input_file">
+    <div>上传文件</div>
+  </label>
+  <div id="main">
+    <div class="left fl">
+      <div class="wrap">
+        <img src="" alt="" class="img">
+        <canvas id="canvas" width="500px" height="500px"></canvas>
+      </div>
+    </div>
+    <div class="right fr">
+      <div class="color_info">
+        <ul>
+          <div class="info_r">
+            <div class="info_text fl"></div>
+            <span class="info_title">R:</span>
+            <div class="info_img fr"></div>
+          </div>
+        </ul>
+        <ul>
+          <div class="info_g">
+            <div class="info_text fl"></div>
+            <span class="info_title">G:</span>
+            <div class="info_img fr"></div>
+          </div>
+        </ul>
+        <ul>
+          <div class="info_b">
+            <div class="info_text fl"></div>
+            <span class="info_title">B:</span>
+            <div class="info_img fr"></div>
+          </div>
+        </ul>
+        <ul>
+          <div>
+            <div class="info_a">
+              <div class="info_text fl"></div>
+              <span class="info_title">Alpha:</span>
+            </div>
+        </ul>
+      </div>
+      <div class="show_box"></div>
+    </div>
+  </div>
+  <script src="javascript/js/showColorInfo.js"></script>
+  <script>
+    let file = document.getElementById("input_file");
+    let img = document.getElementsByClassName("img")[0];
+    file.onchange = function () {
+      let dataURL = window.URL.createObjectURL(file.files[0]);
+      img.setAttribute("src", dataURL);
+      let canvas = document.getElementById("canvas");
+      showColorInfo(canvas, img, 1)
+    }
+  </script>
+</body>
+
+</html>
